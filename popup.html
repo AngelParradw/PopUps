@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up Sequence</title>
+    <script>
+        function createPopups() {
+            let messages = ["Hola bro", "¿Cómo estás?", "¡Espero que bien!", "¡Sorpresa!", "¿Estás intentando cerrar las ventanas?", "Creo que no será posible", ":("];
+            let i = 0;
+
+            function showNextPopup() {
+                let popup;
+
+                if (i < messages.length - 1) {
+                    popup = window.open("", "_blank", "fullscreen=yes");
+                    popup.document.write("<p style='font-size: 50px; text-align: center; margin-top: 40%;'>" + messages[i] + "</p>");
+                    popup.document.body.style.backgroundColor = "white";
+                    popup.focus();
+                    i++;
+                    popup.onunload = showNextPopup; // Muestra el siguiente pop-up cuando se cierra el actual
+                } else {
+                    popup = window.open("", "_blank", "fullscreen=yes");
+                    popup.document.write("<p style='font-size: 50px; text-align: center; margin-top: 40%;'>" + messages[i] + "</p>");
+                    popup.document.body.style.backgroundColor = "white";
+                    popup.focus();
+                    popup.onunload = showNextPopup; // Vuelve a mostrar la cara triste infinitamente
+                }
+            }
+
+            showNextPopup();
+        }
+
+        window.onload = createPopups;
+    </script>
+</head>
+<body>
+    <h1></h1>
+</body>
+</html>
